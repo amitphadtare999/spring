@@ -2,6 +2,7 @@ package com.amitinfotech.java.restfulwebservices.user;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -16,7 +17,7 @@ public class UserDaoService {
 	static {
 		users.add(new User(1, "Amit", new Date()));
 		users.add(new User(2, "Shrinivasan", new Date()));
-		users.add(new User(1, "Ninaad", new Date()));		
+		users.add(new User(3, "Ninaad", new Date()));		
 	}
 	
 	public List<User> findAll()
@@ -41,5 +42,19 @@ public class UserDaoService {
 			}
 		}
 		return null;
+	}
+	
+	public User deleteById(int id)
+	{
+		Iterator<User> iterator = users.iterator();
+		while(iterator.hasNext()) {
+			User user = iterator.next();
+			if(user.getId() == id) {
+				iterator.remove();
+				return user;
+			}
+		}
+		return null;
+		
 	}
 }
